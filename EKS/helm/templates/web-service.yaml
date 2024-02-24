@@ -12,9 +12,9 @@ spec:
   selector:
     service: web
   {{ if .Values.nodeport }}
-  type: NodePort
+  type: ClusterIP
   {{ else }}
-  type: LoadBalancer
+  type: ClusterIP
   {{ end }}
 ---
 {{if .Values.ocCreateRoute}}
