@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -606,3 +607,4 @@ spec:
   selector:
     service: web
   type: NodePort  # Specify the type as NodePort
+---
