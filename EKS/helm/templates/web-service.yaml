@@ -14,8 +14,8 @@ spec:
   {{ if .Values.nodeport }}
   type: NodePort
   {{ else }}
-  type: LoadBalancer
-  {{ end }}
+  # type: LoadBalancer
+  # {{ end }}
 ---
 {{if .Values.ocCreateRoute}}
 apiVersion: route.openshift.io/v1
