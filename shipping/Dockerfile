@@ -1,5 +1,5 @@
 # Use a base image that includes Maven and JDK for building Java applications
-FROM maven:3.6.3-openjdk-8 AS build
+FROM maven:3.8.5-openjdk-17-slim AS build
 
 WORKDIR /opt/shipping
 
