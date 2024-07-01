@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    
+   stage('mongo') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'DockerHubCredentials', variable: 'DockerHubCredentials')]) {
+                          sh 'docker login -u charlesjatto -p ${DockerHubCredentials}'
+                          sh 'docker build -t charlesjatto/mongo:latest .'
+                          sh 'docker push charlesjatto/mongo:latest'
+                          sh 'docker rmi charlesjatto/mongo:latest'
+                }
+            }
+        }
+    }
+}
