@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    
+stage('web') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'DockerHubCredentials', variable: 'DockerHubCredentials')]) {
+                          sh 'docker login -u charlesjatto -p ${DockerHubCredentials}'
+                          sh 'docker build -t charlesjatto/web:latest .'
+                          sh 'docker push charlesjatto/web:latest'
+                          sh 'docker rmi charlesjatto/web:latest'
+                }
+            }
+        }
+    }
+}
