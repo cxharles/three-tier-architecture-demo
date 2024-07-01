@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    
+   stage('load-gen') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'DockerHubCredentials', variable: 'DockerHubCredentials')]) {
+                          sh 'docker login -u charlesjatto -p ${DockerHubCredentials}'
+                          sh 'docker build -t charlesjatto/load-gen:latest .'
+                          sh 'docker push charlesjatto/load-gen:latest'
+                          sh 'docker rmi charlesjatto/load-gen:latest'
+                }
+            }
+        }
+    }
+}
