@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    
+    stage('cart') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'DockerHubCredentials', variable: 'DockerHubCredentials')]) {
+                          sh 'docker login -u charlesjatto -p ${DockerHubCredentials}'
+                          sh 'docker build -t charlesjatto/cart:latest .'
+                          sh 'docker push charlesjatto/cart:latest'
+                          sh 'docker rmi charlesjatto/cart:latest'
+                }
+            }
+        }
+    }
+}
