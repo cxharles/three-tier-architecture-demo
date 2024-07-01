@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    
+stage('shipping') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'DockerHubCredentials', variable: 'DockerHubCredentials')]) {
+                          sh 'docker login -u charlesjatto -p ${DockerHubCredentials}'
+                          sh 'docker build -t charlesjatto/shipping:latest .'
+                          sh 'docker push charlesjatto/shipping:latest'
+                          sh 'docker rmi charlesjatto/shipping:latest'
+                }
+            }
+        }
+    }
+}
