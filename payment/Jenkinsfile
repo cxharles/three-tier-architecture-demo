@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    
+stage('payment') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'DockerHubCredentials', variable: 'DockerHubCredentials')]) {
+                          sh 'docker login -u charlesjatto -p ${DockerHubCredentials}'
+                          sh 'docker build -t charlesjatto/payment:latest .'
+                          sh 'docker push charlesjatto/payment:latest'
+                          sh 'docker rmi charlesjatto/payment:latest'
+                }
+            }
+        }
+    }
+}
