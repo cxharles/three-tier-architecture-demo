@@ -18,7 +18,7 @@ spec:
       serviceAccountName: robot-shop
       containers:
       - name: cart
-        image: 
+        image: charlesjatto/cart:latest
         # agent networking access
         env:
           - name: INSTANA_AGENT_HOST
@@ -66,7 +66,7 @@ spec:
       serviceAccountName: robot-shop
       containers:
       - name: catalogue
-        image: 
+        image: charlesjatto/catalogue:latest
         env:
           - name: INSTANA_AGENT_HOST
             valueFrom:
@@ -115,7 +115,7 @@ spec:
       serviceAccountName: robot-shop
       containers:
       - name: dispatch
-        image: 
+        image: charlesjatto/dispatch:latest
         env:
           # agent networking access
           - name: INSTANA_AGENT_HOST
@@ -164,7 +164,7 @@ spec:
       serviceAccountName: robot-shop
       containers:
       - name: mongodb
-        image: 
+        image: charlesjatto/mongo:latest
         ports:
         - containerPort: 27017
         resources:
@@ -208,7 +208,7 @@ spec:
       serviceAccountName: robot-shop
       containers:
       - name: mysql
-        image: 
+        image: charlesjatto/mysql:latest
         # added for Istio
         # securityContext:
         #   capabilities:
@@ -259,7 +259,7 @@ spec:
       serviceAccountName: robot-shop
       containers:
       - name: payment
-        image: 
+        image: charlesjatto/payment:latest
         # agent networking access
         env:
           - name: INSTANA_AGENT_HOST
@@ -362,7 +362,7 @@ spec:
       serviceAccountName: robot-shop
       containers:
       - name: ratings
-        image: 
+        image: charlesjatto/ratings:latest
         ports:
         - containerPort: 80
         resources:
@@ -473,7 +473,7 @@ spec:
       serviceAccountName: robot-shop
       containers:
       - name: shipping
-        image: 
+        image: charlesjatto/shipping:latest
         ports:
         - containerPort: 8080
         # it's Java it needs lots of memory
@@ -526,7 +526,7 @@ spec:
       serviceAccountName: robot-shop
       containers:
       - name: user
-        image: 
+        image: charlesjatto/user:latest
         env:
           # agent networking access
           - name: INSTANA_AGENT_HOST
@@ -584,7 +584,7 @@ spec:
             value: "1"
           - name: ERROR
             value: "1"
-        image: 
+        image: charlesjatto/load-gen:latest
         resources:
           limits:
             cpu: 200m
@@ -626,7 +626,7 @@ spec:
       serviceAccountName: robot-shop
       containers:
       - name: web
-        image: 
+        image: charlesjatto/web:latest
         env:
         - name: INSTANA_EUM_KEY
           value: {{ .Values.eum.key }}
